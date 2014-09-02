@@ -1,10 +1,27 @@
 {
-	"name" : "push-mail",
-	"version" : "0.0.1",
-	"private" : true,
+	"name": "push-mail",
+	"version": "0.0.1",
+	"description": "A simple scheduled mailer.",
+	"main": "index.js",
+	"scripts": {
+		"test": "mocha"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/dnjuguna/push-mail.git"
+	},
 	"dependencies" : {
 		"mysql" : ">= 2.2.0",
 		"nodemailer" : ">= 0.6.0"
 	}
+	"keywords": [
+		"mail",
+		"scheduled"
+	],
+	"author": "David Njuguna <dnjuguna@gmail.com> (https://github.com/dnjuguna)",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/dnjuguna/push-mail/issues"
+	},
+	"homepage": "https://github.com/dnjuguna/push-mail"
 }
-
