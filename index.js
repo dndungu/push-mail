@@ -28,7 +28,7 @@ connection.connect(function(error) {
 });
 
 setInterval(function(){
-	var query = 'SELECT * FROM `' + settings.mysql.database + '`.`mail` WHERE `locked` = 0 AND `relayTime` IS NULL AND `schedule` < LIMIT 1' + ((new Date()).getTime()/1000);
+	var query = 'SELECT * FROM `' + settings.mysql.database + '`.`mail` WHERE `locked` = 0 AND `relayTime` IS NULL AND `schedule` < ' + ((new Date()).getTime()/1000) + ' LIMIT 1';
 	connection.query(query, function(error, rows){
 		if(error)
 			return console.log(error);
