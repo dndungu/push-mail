@@ -21,6 +21,7 @@ var connection = mysql.createConnection({
 	host: settings.mysql.host,
 	user: settings.mysql.user,
 	password : settings.mysql.password,
+	database : settings.mysql.database
 });
 
 connection.connect(function(error) {
