@@ -20,8 +20,7 @@ var options = {
 var connection = mysql.createConnection({
 	host: settings.mysql.host,
 	user: settings.mysql.user,
-	password : settings.mysql.password,
-	database : settings.mysql.database
+	password : settings.mysql.password
 });
 
 connection.connect(function(error) {
@@ -29,13 +28,13 @@ connection.connect(function(error) {
 });
 
 setInterval(function(){
-	var query = 'SELECT * FROM `mail` WHERE `locked` = 0 AND `relayTime` IS NULL AND `schedule` < LIMIT 1' + ((new Date()).getTime()/1000);
+	var query = 'SELECT * FROM `' + settings.mysql.database + '`.`mail` WHERE `locked` = 0 AND `relayTime` IS NULL AND `schedule` < LIMIT 1' + ((new Date()).getTime()/1000);
 	connection.query(query, function(error, rows){
 		if(error)
 			return console.log(error);
 		if(!rows.length)
 			return console.log('no scheduled mail, exiting');
-		connection.query('UPDATE `mail` SET locked = 1 WHERE `mailID` = ?', rows[0].mailID);
+		connection.query('UPDATE `' + settings.mysql.database + '`.`mail` SET locked = 1 WHERE `mailID` = ?', rows[0].mailID);
 		for(var i in rows){
 			var row = rows[i];
 			options.to = row.to;
@@ -46,7 +45,7 @@ setInterval(function(){
 				if(error)
 					console.log(error);
 				else
-					connection.query('UPDATE `mail` SET ?', {relayTime: ((new Date()).getTime()/1000)}, function(){});
+					connection.query('UPDATE `' + settings.mysql.database + '`.`mail` SET ?', {relayTime: ((new Date()).getTime()/1000)}, function(){});
 			});
 		}
 	});
