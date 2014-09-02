@@ -1,6 +1,6 @@
 "use strict";
 
-var settings = require("settings.json");
+var settings = require("./settings.json");
 
 var nodemailer = require("nodemailer");
 var mysql      = require('mysql');
